@@ -1,9 +1,10 @@
 package net.babuszka.personalweightmonitor.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.util.Date;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 @Entity(tableName = "weight_table")
 public class Weight {

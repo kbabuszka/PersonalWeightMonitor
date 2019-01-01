@@ -1,14 +1,18 @@
 package net.babuszka.personalweightmonitor.model.db;
 
+import android.arch.persistence.room.Database;
+import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
+
+import net.babuszka.personalweightmonitor.data.db.Converters;
+import net.babuszka.personalweightmonitor.model.db.WeightDao;
 
 import net.babuszka.personalweightmonitor.model.Weight;
 
-import androidx.room.Database;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
-
-@Database(entities = Weight.class, version = 1)
+@Database(entities = {Weight.class}, version = 1, exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract class WeightDatabase extends RoomDatabase {
 
     private static WeightDatabase instance;
