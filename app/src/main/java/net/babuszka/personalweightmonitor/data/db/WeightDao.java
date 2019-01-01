@@ -1,4 +1,4 @@
-package net.babuszka.personalweightmonitor.model.db;
+package net.babuszka.personalweightmonitor.data.db;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
@@ -7,7 +7,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import net.babuszka.personalweightmonitor.model.Weight;
+import net.babuszka.personalweightmonitor.data.model.Weight;
 
 import java.util.List;
 

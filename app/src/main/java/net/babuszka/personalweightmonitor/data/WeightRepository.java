@@ -1,11 +1,12 @@
-package net.babuszka.personalweightmonitor.model;
+package net.babuszka.personalweightmonitor.data;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
-import net.babuszka.personalweightmonitor.model.db.WeightDao;
-import net.babuszka.personalweightmonitor.model.db.WeightDatabase;
+import net.babuszka.personalweightmonitor.data.db.WeightDao;
+import net.babuszka.personalweightmonitor.data.db.WeightDatabase;
+import net.babuszka.personalweightmonitor.data.model.Weight;
 
 import java.util.List;
 

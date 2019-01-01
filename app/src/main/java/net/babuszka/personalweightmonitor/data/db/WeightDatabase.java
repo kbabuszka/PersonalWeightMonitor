@@ -1,4 +1,4 @@
-package net.babuszka.personalweightmonitor.model.db;
+package net.babuszka.personalweightmonitor.data.db;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
@@ -6,10 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
-import net.babuszka.personalweightmonitor.data.db.Converters;
-import net.babuszka.personalweightmonitor.model.db.WeightDao;
-
-import net.babuszka.personalweightmonitor.model.Weight;
+import net.babuszka.personalweightmonitor.data.model.Weight;
 
 @Database(entities = {Weight.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
