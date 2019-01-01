@@ -2,13 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_chart"
+        android:icon="@drawable/ic_chart_black"
         android:title="@string/title_chart" />
 
     <item
         android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_dashboard_black"
         android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_data"
+        android:icon="@drawable/ic_list_black"
         android:title="@string/title_data" />
 </menu>
