@@ -11,6 +11,7 @@ import net.babuszka.personalweightmonitor.data.model.Weight;
 import java.util.List;
 
 public class WeightListViewModel extends AndroidViewModel {
+    private static final String TAG = "WeightListViewModel";
 
     private WeightRepository weightRepository;
     private LiveData<List<Weight>> allWeight;

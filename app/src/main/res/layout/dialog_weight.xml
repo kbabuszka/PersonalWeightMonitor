@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dataDialogLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
 
-</android.support.constraint.ConstraintLayout>
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/etWeight"
+        android:layout_below="@id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:ems="15"
+        android:inputType="numberDecimal"
+        android:hint="@string/edittext_weight_hint"/>
+
+    <Button
+        android:id="@+id/btnSaveData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etWeight"
+        android:layout_alignParentRight="true"
+        android:text="@string/button_save_data" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etWeight"
+        android:layout_toLeftOf="@id/btnSaveData"
+        android:text="@string/button_cancel" />
+
+
+</RelativeLayout>

@@ -18,8 +18,8 @@ import net.babuszka.personalweightmonitor.data.model.Weight;
 import java.util.List;
 
 public class WeightListFragment extends Fragment {
-
     private static final String TAG = "WeightListFragment";
+
     private WeightListViewModel weightListViewModel;
     private RecyclerView recyclerView;
 
