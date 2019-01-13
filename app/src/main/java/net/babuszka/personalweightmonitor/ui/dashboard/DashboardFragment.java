@@ -1,8 +1,10 @@
 package net.babuszka.personalweightmonitor.ui.dashboard;
 
 import android.app.Dialog;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -20,6 +22,7 @@ public class DashboardFragment extends Fragment {
     private static final String TAG = "DashboardFragment";
 
     private DashboardViewModel dashboardViewModel;
+    private AddWeightViewModel addWeightViewModel;
 
     private View view;
     private FloatingActionButton btnAdd;
@@ -38,6 +41,13 @@ public class DashboardFragment extends Fragment {
         setListeners();
         datePicker.setMaxDate(System.currentTimeMillis());
         dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel.class);
+        addWeightViewModel = ViewModelProviders.of(this).get(AddWeightViewModel.class);
+        addWeightViewModel.getAddWeightResponse().observe(this, new Observer() {
+            @Override
+            public void onChanged(@Nullable Object o) {
+
+            }
+        });
         return view;
     }
 
@@ -69,7 +79,7 @@ public class DashboardFragment extends Fragment {
                 int month = datePicker.getMonth()+1;
                 int day = datePicker.getDayOfMonth();
                 String weight = etWeight.getText().toString();
-                dashboardViewModel.saveWeightButtonClicked(year, month, day, weight);
+                addWeightViewModel.saveWeightButtonClicked(year, month, day, weight);
             }
         });
 
