@@ -97,7 +97,7 @@ public class DashboardFragment extends Fragment {
     private void handleStatus(SaveWeightStatus status) {
         switch (status) {
             case SUCCESS: {
-                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_success));
+                ViewUtils.snackbarMessage(getView(), getString(R.string.message_status_weight_success));
                 dialogWeight.dismiss();
             } break;
 
