@@ -3,7 +3,7 @@ package net.babuszka.personalweightmonitor.data.model;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 @Entity(tableName = "weight_table")
@@ -12,9 +12,9 @@ public class Weight {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private Double weight;
-    private Date date;
+    private LocalDate date;
 
-    public Weight(Double weight, Date date) {
+    public Weight(Double weight, LocalDate date) {
         this.weight = weight;
         this.date = date;
     }
@@ -27,7 +27,7 @@ public class Weight {
         return weight;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

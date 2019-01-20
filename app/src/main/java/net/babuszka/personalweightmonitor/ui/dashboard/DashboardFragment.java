@@ -45,7 +45,6 @@ public class DashboardFragment extends Fragment {
         dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel.class);
 
         addWeightViewModel = ViewModelProviders.of(this).get(AddWeightViewModel.class);
-        Log.d(TAG, "Is addWeightViewModel a null? " + addWeightViewModel.equals(null));
         addWeightViewModel.getStatus().observe(this, new Observer<SaveWeightStatus>() {
             @Override
             public void onChanged(@Nullable SaveWeightStatus status) {

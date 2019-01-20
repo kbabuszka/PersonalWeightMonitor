@@ -11,6 +11,7 @@ import net.babuszka.personalweightmonitor.common.error_handling.SingleLiveEvent;
 import net.babuszka.personalweightmonitor.data.WeightRepository;
 import net.babuszka.personalweightmonitor.data.model.Weight;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class AddWeightViewModel extends AndroidViewModel {
@@ -40,7 +41,8 @@ public class AddWeightViewModel extends AndroidViewModel {
 
         if (weight.length() > 0) {
             Double dWeight = Double.parseDouble(weight);
-            Date date = new Date(year, month, day);
+            LocalDate date = LocalDate.of(year, month, day);
+            //Date date = new Date(year, month, day);
             Weight newWeight = new Weight(dWeight, date);
             insert(newWeight);
             status.setValue(SaveWeightStatus.SUCCESS);
