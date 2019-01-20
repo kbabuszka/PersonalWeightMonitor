@@ -16,6 +16,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import net.babuszka.personalweightmonitor.R;
+import net.babuszka.personalweightmonitor.common.error_handling.SaveWeightStatus;
+import net.babuszka.personalweightmonitor.utils.ViewUtils;
 
 public class DashboardFragment extends Fragment {
 
@@ -41,11 +43,13 @@ public class DashboardFragment extends Fragment {
         setListeners();
         datePicker.setMaxDate(System.currentTimeMillis());
         dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel.class);
-        addWeightViewModel = ViewModelProviders.of(this).get(AddWeightViewModel.class);
-        addWeightViewModel.getAddWeightResponse().observe(this, new Observer() {
-            @Override
-            public void onChanged(@Nullable Object o) {
 
+        addWeightViewModel = ViewModelProviders.of(this).get(AddWeightViewModel.class);
+        Log.d(TAG, "Is addWeightViewModel a null? " + addWeightViewModel.equals(null));
+        addWeightViewModel.getStatus().observe(this, new Observer<SaveWeightStatus>() {
+            @Override
+            public void onChanged(@Nullable SaveWeightStatus status) {
+                handleStatus(status);
             }
         });
         return view;
@@ -86,9 +90,35 @@ public class DashboardFragment extends Fragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogWeight.dismiss();
+                addWeightViewModel.cancelWeightButtonClicked();
             }
         });
+    }
+
+    private void handleStatus(SaveWeightStatus status) {
+        switch (status) {
+            case SUCCESS: {
+                ViewUtils.toastMessage(getContext(), "Waga dodana");
+                dialogWeight.dismiss();
+            } break;
+
+            case EMPTY: {
+                ViewUtils.toastMessage(getContext(), "Musisz podac wage");
+            } break;
+
+            case NOT_A_NUMBER: {
+                ViewUtils.toastMessage(getContext(), "Podana waga musi być liczbą");
+            } break;
+
+            case NEGATIVE_NUMBER: {
+                ViewUtils.toastMessage(getContext(), "Waga nie może być ujemna");
+            } break;
+
+            case CANCELED: {
+                dialogWeight.dismiss();
+            } break;
+        }
+
     }
 
 }

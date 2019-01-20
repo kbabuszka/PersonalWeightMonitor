@@ -2,10 +2,12 @@ package net.babuszka.personalweightmonitor.ui.dashboard;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import net.babuszka.personalweightmonitor.common.error_handling.SaveWeightStatus;
+import net.babuszka.personalweightmonitor.common.error_handling.SingleLiveEvent;
 import net.babuszka.personalweightmonitor.data.WeightRepository;
 import net.babuszka.personalweightmonitor.data.model.Weight;
 
@@ -15,19 +17,18 @@ public class AddWeightViewModel extends AndroidViewModel {
     private static final String TAG = "DashboardViewModel";
 
     private WeightRepository weightRepository;
-    private MutableLiveData addWeightResponse;
+    private SingleLiveEvent<SaveWeightStatus> status;
 
     public AddWeightViewModel(@NonNull Application application) {
         super(application);
+        status = new SingleLiveEvent<SaveWeightStatus>();
         weightRepository = new WeightRepository(application);
     }
 
-
-    public MutableLiveData getAddWeightResponse() {
-        if(addWeightResponse == null)
-            addWeightResponse = new MutableLiveData();
-        return addWeightResponse;
+    public LiveData<SaveWeightStatus> getStatus() {
+        return this.status;
     }
+
 
     public void insert(Weight weight) {
         weightRepository.insert(weight);
@@ -42,12 +43,15 @@ public class AddWeightViewModel extends AndroidViewModel {
             Date date = new Date(year, month, day);
             Weight newWeight = new Weight(dWeight, date);
             insert(newWeight);
-
+            status.setValue(SaveWeightStatus.SUCCESS);
             Log.d(TAG, "[saveWeightButtonClicked] Inserted following data: " + date.toString());
+        } else {
+            status.setValue(SaveWeightStatus.EMPTY);
         }
     }
 
     public void cancelWeightButtonClicked() {
+        status.setValue(SaveWeightStatus.CANCELED);
         Log.d(TAG, "[cancelWeightButtonClicked] called");
 
     }
