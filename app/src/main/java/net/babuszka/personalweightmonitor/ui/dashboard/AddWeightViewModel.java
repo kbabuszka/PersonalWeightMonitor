@@ -12,7 +12,6 @@ import net.babuszka.personalweightmonitor.data.WeightRepository;
 import net.babuszka.personalweightmonitor.data.model.Weight;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class AddWeightViewModel extends AndroidViewModel {
     private static final String TAG = "DashboardViewModel";
@@ -22,7 +21,7 @@ public class AddWeightViewModel extends AndroidViewModel {
 
     public AddWeightViewModel(@NonNull Application application) {
         super(application);
-        status = new SingleLiveEvent<SaveWeightStatus>();
+        status = new SingleLiveEvent<>();
         weightRepository = new WeightRepository(application);
     }
 
@@ -42,7 +41,6 @@ public class AddWeightViewModel extends AndroidViewModel {
         if (weight.length() > 0) {
             Double dWeight = Double.parseDouble(weight);
             LocalDate date = LocalDate.of(year, month, day);
-            //Date date = new Date(year, month, day);
             Weight newWeight = new Weight(dWeight, date);
             insert(newWeight);
             status.setValue(SaveWeightStatus.SUCCESS);

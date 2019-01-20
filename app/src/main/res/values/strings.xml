@@ -1,14 +1,22 @@
 <resources>
-<string name="app_name">Personal Weight Monitor</string>
+    <string name="app_name">Personal Weight Monitor</string>
 
-<string name="title_home">Dashboard</string>
-<string name="title_chart">Chart</string>
-<string name="title_data">View data</string>
+    <string name="title_home">Dashboard</string>
+    <string name="title_chart">Chart</string>
+    <string name="title_data">View data</string>
 
-<string name="button_cancel">Cancel</string>
-<string name="button_save_data">Save data</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_save_data">Save data</string>
 
-<string name="edittext_weight_hint">Put your weight here...</string>
+    <string name="edittext_weight_hint">Put your weight here...</string>
+
+    <string name="message_status_weight_success">Weight added successfuly</string>
+    <string name="message_status_weight_empty">You have to provide your weight</string>
+    <string name="message_status_weight_not_number">Weight has to be a number</string>
+    <string name="message_status_weight_negative_number">Weight cannot be less than zero</string>
+
+
+
 
 <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -97,20 +97,20 @@ public class DashboardFragment extends Fragment {
     private void handleStatus(SaveWeightStatus status) {
         switch (status) {
             case SUCCESS: {
-                ViewUtils.toastMessage(getContext(), "Waga dodana");
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_success));
                 dialogWeight.dismiss();
             } break;
 
             case EMPTY: {
-                ViewUtils.toastMessage(getContext(), "Musisz podac wage");
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_empty));
             } break;
 
             case NOT_A_NUMBER: {
-                ViewUtils.toastMessage(getContext(), "Podana waga musi być liczbą");
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_not_number));
             } break;
 
             case NEGATIVE_NUMBER: {
-                ViewUtils.toastMessage(getContext(), "Waga nie może być ujemna");
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_negative_number));
             } break;
 
             case CANCELED: {
