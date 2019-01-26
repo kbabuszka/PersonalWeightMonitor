@@ -15,9 +15,12 @@
     <string name="message_status_weight_not_number">Weight has to be a number</string>
     <string name="message_status_weight_negative_number">Weight cannot be less than zero</string>
 
+    <string name="message_status_weight_delete_success">Weight deleted successfuly</string>
+    <string name="message_status_weight_delete_failed">Weight couldn\'t be deleted</string>
 
-
+    <string name="message_status_weight_edit_success">Weight edited successfuly</string>
 
 <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

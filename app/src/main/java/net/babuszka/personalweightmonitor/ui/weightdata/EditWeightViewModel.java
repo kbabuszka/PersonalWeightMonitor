@@ -1,4 +1,4 @@
-package net.babuszka.personalweightmonitor.ui.dashboard;
+package net.babuszka.personalweightmonitor.ui.weightdata;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -13,13 +13,13 @@ import net.babuszka.personalweightmonitor.data.model.Weight;
 
 import java.time.LocalDate;
 
-public class AddWeightViewModel extends AndroidViewModel {
-    private static final String TAG = "DashboardViewModel";
+public class EditWeightViewModel extends AndroidViewModel {
+    private static final String TAG = "EditWeightViewModel";
 
     private WeightRepository weightRepository;
     private SingleLiveEvent<SaveWeightStatus> status;
 
-    public AddWeightViewModel(@NonNull Application application) {
+    public EditWeightViewModel(@NonNull Application application) {
         super(application);
         status = new SingleLiveEvent<>();
         weightRepository = new WeightRepository(application);
@@ -29,22 +29,22 @@ public class AddWeightViewModel extends AndroidViewModel {
         return this.status;
     }
 
-
-    public void insert(Weight weight) {
-        weightRepository.insert(weight);
+    public void update(Weight weight) {
+        weightRepository.update(weight);
     }
 
-
-    public void saveWeightButtonClicked(int year, int month, int day, String weight) {
-        Log.d(TAG, "[saveWeightButtonClicked] Received following data from activity: " + year + "-" + month + "-" + day + ", Weight: " + weight);
+    public void saveWeightButtonClicked(int year, int month, int day, String weight, int id) {
+        Log.d(TAG, "[saveWeightButtonClicked] Received following data from activity: ID: " + id + ", Date: " + year + "-" + month + "-" + day + ", Weight: " + weight);
 
         if (weight.length() > 0) {
             Double dWeight = Double.parseDouble(weight);
             LocalDate date = LocalDate.of(year, month, day);
+
             Weight newWeight = new Weight(dWeight, date);
-            insert(newWeight);
+            newWeight.setId(id);
+            update(newWeight);
             status.setValue(SaveWeightStatus.SUCCESS);
-            Log.d(TAG, "[saveWeightButtonClicked] Inserted following data: " + date.toString());
+            Log.d(TAG, "[saveWeightButtonClicked] Updated following data: " + date.toString());
         } else {
             status.setValue(SaveWeightStatus.EMPTY);
         }
@@ -55,5 +55,4 @@ public class AddWeightViewModel extends AndroidViewModel {
         Log.d(TAG, "[cancelWeightButtonClicked] called");
 
     }
-
 }

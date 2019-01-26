@@ -16,6 +16,7 @@ import java.util.List;
 public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.WeightViewHolder> {
 
     private List<Weight> weightList = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -41,6 +42,10 @@ public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.WeightView
         notifyDataSetChanged();
     }
 
+    public Weight getWeightAtPosition(int position) {
+        return weightList.get(position);
+    }
+
     class WeightViewHolder extends RecyclerView.ViewHolder {
         private TextView tvWeight;
         private TextView tvDate;
@@ -49,6 +54,24 @@ public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.WeightView
             super(itemView);
             tvWeight = itemView.findViewById(R.id.text_weight);
             tvDate = itemView.findViewById(R.id.text_date);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if(listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.OnItemClick(weightList.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void OnItemClick(Weight weight);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }
