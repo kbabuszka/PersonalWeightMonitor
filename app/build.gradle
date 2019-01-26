@@ -36,5 +36,5 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 
-
+    implementation 'com.github.GrenderG:Toasty:1.4.0'
 }

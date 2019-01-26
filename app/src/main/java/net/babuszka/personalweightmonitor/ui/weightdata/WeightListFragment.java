@@ -23,6 +23,7 @@ import net.babuszka.personalweightmonitor.R;
 import net.babuszka.personalweightmonitor.common.error_handling.SaveWeightStatus;
 import net.babuszka.personalweightmonitor.data.model.Weight;
 import net.babuszka.personalweightmonitor.ui.dashboard.AddWeightViewModel;
+import net.babuszka.personalweightmonitor.utils.MessageTypes;
 import net.babuszka.personalweightmonitor.utils.ViewUtils;
 
 import java.time.LocalDate;
@@ -96,7 +97,8 @@ public class WeightListFragment extends Fragment {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 weightListViewModel.delete(weightAdapter.getWeightAtPosition(viewHolder.getAdapterPosition()));
-                ViewUtils.snackbarMessage(getView(), getString(R.string.message_status_weight_delete_success));
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_delete_success), MessageTypes.SUCCESS);
+                //ViewUtils.snackbarMessage(getView(), getString(R.string.message_status_weight_delete_success));
             }
         }).attachToRecyclerView(recyclerView);
 
@@ -158,7 +160,7 @@ public class WeightListFragment extends Fragment {
             public void OnItemClick(Weight weight) {
                 Log.d(TAG, "Weight Item on RecyclerView clicked");
                 isWeightBeingEdited = true;
-                etWeight.setText(weight.getWeight().toString());
+                etWeight.setText((weight.getWeight() == null) ? "" : weight.getWeight().toString());
                 int year = weight.getDate().getYear();
                 int month = weight.getDate().getMonthValue()-1;
                 int day = weight.getDate().getDayOfMonth();
@@ -182,15 +184,15 @@ public class WeightListFragment extends Fragment {
             } break;
 
             case EMPTY: {
-                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_empty));
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_empty), MessageTypes.ERROR);
             } break;
 
             case NOT_A_NUMBER: {
-                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_not_number));
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_not_number), MessageTypes.ERROR);
             } break;
 
             case NEGATIVE_NUMBER: {
-                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_negative_number));
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_negative_number), MessageTypes.ERROR);
             } break;
 
             case CANCELED: {
@@ -203,20 +205,20 @@ public class WeightListFragment extends Fragment {
     private void handleAddStatus(SaveWeightStatus status) {
         switch (status) {
             case SUCCESS: {
-                ViewUtils.snackbarMessage(getView(), getString(R.string.message_status_weight_success));
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_success), MessageTypes.SUCCESS);
                 dialogWeight.dismiss();
             } break;
 
             case EMPTY: {
-                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_empty));
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_empty), MessageTypes.ERROR);
             } break;
 
             case NOT_A_NUMBER: {
-                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_not_number));
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_not_number), MessageTypes.ERROR);
             } break;
 
             case NEGATIVE_NUMBER: {
-                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_negative_number));
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_negative_number), MessageTypes.ERROR);
             } break;
 
             case CANCELED: {
@@ -228,6 +230,6 @@ public class WeightListFragment extends Fragment {
 
     private void setLayoutValuesToDefault() {
         this.etWeight.setText("");
-        this.datePicker.updateDate(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue()-1, LocalDate.now().getDayOfMonth());
+        this.datePicker.updateDate(LocalDate.now().getYear(), LocalDate.now().getMonthValue()-1, LocalDate.now().getDayOfMonth());
     }
 }

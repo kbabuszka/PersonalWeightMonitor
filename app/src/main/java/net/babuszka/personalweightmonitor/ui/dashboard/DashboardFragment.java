@@ -17,6 +17,7 @@ import android.widget.EditText;
 
 import net.babuszka.personalweightmonitor.R;
 import net.babuszka.personalweightmonitor.common.error_handling.SaveWeightStatus;
+import net.babuszka.personalweightmonitor.utils.MessageTypes;
 import net.babuszka.personalweightmonitor.utils.ViewUtils;
 
 import java.time.LocalDate;
@@ -104,15 +105,15 @@ public class DashboardFragment extends Fragment {
             } break;
 
             case EMPTY: {
-                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_empty));
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_empty), MessageTypes.ERROR);
             } break;
 
             case NOT_A_NUMBER: {
-                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_not_number));
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_not_number), MessageTypes.ERROR);
             } break;
 
             case NEGATIVE_NUMBER: {
-                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_negative_number));
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_negative_number), MessageTypes.ERROR);
             } break;
 
             case CANCELED: {
@@ -124,7 +125,7 @@ public class DashboardFragment extends Fragment {
 
     private void setLayoutValuesToDefault() {
         this.etWeight.setText("");
-        this.datePicker.updateDate(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue()-1, LocalDate.now().getDayOfMonth());
+        this.datePicker.updateDate(LocalDate.now().getYear(), LocalDate.now().getMonthValue()-1, LocalDate.now().getDayOfMonth());
     }
 
 }

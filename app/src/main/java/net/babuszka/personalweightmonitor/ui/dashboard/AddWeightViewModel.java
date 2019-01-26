@@ -39,12 +39,16 @@ public class AddWeightViewModel extends AndroidViewModel {
         Log.d(TAG, "[saveWeightButtonClicked] Received following data from activity: " + year + "-" + month + "-" + day + ", Weight: " + weight);
 
         if (weight.length() > 0) {
-            Double dWeight = Double.parseDouble(weight);
-            LocalDate date = LocalDate.of(year, month, day);
-            Weight newWeight = new Weight(dWeight, date);
-            insert(newWeight);
-            status.setValue(SaveWeightStatus.SUCCESS);
-            Log.d(TAG, "[saveWeightButtonClicked] Inserted following data: " + date.toString());
+            try {
+                Double dWeight = Double.parseDouble(weight);
+                LocalDate date = LocalDate.of(year, month, day);
+                Weight newWeight = new Weight(dWeight, date);
+                insert(newWeight);
+                status.setValue(SaveWeightStatus.SUCCESS);
+            } catch (NumberFormatException e) {
+                status.setValue(SaveWeightStatus.NOT_A_NUMBER);
+            }
+            Log.d(TAG, "[saveWeightButtonClicked]");
         } else {
             status.setValue(SaveWeightStatus.EMPTY);
         }

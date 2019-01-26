@@ -28,7 +28,7 @@ public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.WeightView
     @Override
     public void onBindViewHolder(@NonNull WeightViewHolder weightViewHolder, int i) {
         Weight weightItem = weightList.get(i);
-        weightViewHolder.tvWeight.setText(weightItem.getWeight().toString());
+        weightViewHolder.tvWeight.setText((weightItem.getWeight() == null) ? "" : weightItem.getWeight().toString());
         weightViewHolder.tvDate.setText(weightItem.getDate().toString());
     }
 
