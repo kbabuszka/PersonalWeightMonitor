@@ -22,6 +22,7 @@ import android.widget.EditText;
 import net.babuszka.personalweightmonitor.R;
 import net.babuszka.personalweightmonitor.common.error_handling.SaveWeightStatus;
 import net.babuszka.personalweightmonitor.data.model.Weight;
+import net.babuszka.personalweightmonitor.ui.dashboard.AddWeightViewModel;
 import net.babuszka.personalweightmonitor.utils.ViewUtils;
 
 import java.time.LocalDate;
@@ -32,9 +33,9 @@ public class WeightListFragment extends Fragment {
     private static final String TAG = "WeightListFragment";
 
     private WeightListViewModel weightListViewModel;
+    private AddWeightViewModel addWeightViewModel;
     private EditWeightViewModel editWeightViewModel;
     private final WeightAdapter weightAdapter = new WeightAdapter();
-    private int currentlyEditedId;
 
     private View view;
     private RecyclerView recyclerView;
@@ -44,6 +45,9 @@ public class WeightListFragment extends Fragment {
     private EditText etWeight;
     private Button btnSaveData;
     private Button btnCancel;
+
+    private int currentlyEditedId;
+    private boolean isWeightBeingEdited = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,11 +71,19 @@ public class WeightListFragment extends Fragment {
             }
         });
 
+        addWeightViewModel = ViewModelProviders.of(this).get(AddWeightViewModel.class);
+        addWeightViewModel.getStatus().observe(this, new Observer<SaveWeightStatus>() {
+            @Override
+            public void onChanged(@Nullable SaveWeightStatus status) {
+                handleAddStatus(status);
+            }
+        });
+
         editWeightViewModel = ViewModelProviders.of(this).get(EditWeightViewModel.class);
         editWeightViewModel.getStatus().observe(this, new Observer<SaveWeightStatus>() {
             @Override
             public void onChanged(@Nullable SaveWeightStatus status) {
-                handleStatus(status);
+                handleEditStatus(status);
             }
         });
 
@@ -111,6 +123,7 @@ public class WeightListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "btnAddWeight clicked");
+                isWeightBeingEdited = false;
                 setLayoutValuesToDefault();
                 dialogWeight.show();
             }
@@ -124,7 +137,10 @@ public class WeightListFragment extends Fragment {
                 int month = datePicker.getMonth()+1;
                 int day = datePicker.getDayOfMonth();
                 String weight = etWeight.getText().toString();
-                editWeightViewModel.saveWeightButtonClicked(year, month, day, weight, currentlyEditedId);
+                if(isWeightBeingEdited)
+                    editWeightViewModel.saveWeightButtonClicked(year, month, day, weight, currentlyEditedId);
+                else
+                    addWeightViewModel.saveWeightButtonClicked(year, month, day, weight);
             }
         });
 
@@ -141,6 +157,7 @@ public class WeightListFragment extends Fragment {
             @Override
             public void OnItemClick(Weight weight) {
                 Log.d(TAG, "Weight Item on RecyclerView clicked");
+                isWeightBeingEdited = true;
                 etWeight.setText(weight.getWeight().toString());
                 int year = weight.getDate().getYear();
                 int month = weight.getDate().getMonthValue()-1;
@@ -157,7 +174,7 @@ public class WeightListFragment extends Fragment {
 
     }
 
-    private void handleStatus(SaveWeightStatus status) {
+    private void handleEditStatus(SaveWeightStatus status) {
         switch (status) {
             case SUCCESS: {
                 ViewUtils.snackbarMessage(getView(), getString(R.string.message_status_weight_edit_success));
@@ -183,8 +200,34 @@ public class WeightListFragment extends Fragment {
 
     }
 
+    private void handleAddStatus(SaveWeightStatus status) {
+        switch (status) {
+            case SUCCESS: {
+                ViewUtils.snackbarMessage(getView(), getString(R.string.message_status_weight_success));
+                dialogWeight.dismiss();
+            } break;
+
+            case EMPTY: {
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_empty));
+            } break;
+
+            case NOT_A_NUMBER: {
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_not_number));
+            } break;
+
+            case NEGATIVE_NUMBER: {
+                ViewUtils.toastMessage(getContext(), getString(R.string.message_status_weight_negative_number));
+            } break;
+
+            case CANCELED: {
+                dialogWeight.dismiss();
+            } break;
+        }
+
+    }
+
     private void setLayoutValuesToDefault() {
         this.etWeight.setText("");
-        this.datePicker.updateDate(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth());
+        this.datePicker.updateDate(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue()-1, LocalDate.now().getDayOfMonth());
     }
 }

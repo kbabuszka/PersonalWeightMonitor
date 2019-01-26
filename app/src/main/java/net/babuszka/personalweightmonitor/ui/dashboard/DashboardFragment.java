@@ -124,7 +124,7 @@ public class DashboardFragment extends Fragment {
 
     private void setLayoutValuesToDefault() {
         this.etWeight.setText("");
-        this.datePicker.updateDate(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth());
+        this.datePicker.updateDate(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue()-1, LocalDate.now().getDayOfMonth());
     }
 
 }
