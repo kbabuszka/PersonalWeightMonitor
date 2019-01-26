@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,7 @@ import net.babuszka.personalweightmonitor.common.error_handling.SaveWeightStatus
 import net.babuszka.personalweightmonitor.data.model.Weight;
 import net.babuszka.personalweightmonitor.utils.ViewUtils;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class WeightListFragment extends Fragment {
@@ -37,6 +39,7 @@ public class WeightListFragment extends Fragment {
     private View view;
     private RecyclerView recyclerView;
     private Dialog dialogWeight;
+    private FloatingActionButton btnAddWeight;
     private DatePicker datePicker;
     private EditText etWeight;
     private Button btnSaveData;
@@ -50,6 +53,7 @@ public class WeightListFragment extends Fragment {
         initView();
         setListeners();
 
+        datePicker.setMaxDate(System.currentTimeMillis());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(weightAdapter);
@@ -94,6 +98,7 @@ public class WeightListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_weight);
         dialogWeight = new Dialog(getContext());
         dialogWeight.setContentView(R.layout.dialog_weight);
+        btnAddWeight = view.findViewById(R.id.btnAdd);
         btnCancel = dialogWeight.findViewById(R.id.btnCancel);
         btnSaveData = dialogWeight.findViewById(R.id.btnSaveData);
         etWeight = dialogWeight.findViewById(R.id.etWeight);
@@ -102,12 +107,21 @@ public class WeightListFragment extends Fragment {
 
     public void setListeners() {
 
+        btnAddWeight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "btnAddWeight clicked");
+                setLayoutValuesToDefault();
+                dialogWeight.show();
+            }
+        });
+
         btnSaveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "btnSaveData clicked");
                 int year = datePicker.getYear();
-                int month = datePicker.getMonth();
+                int month = datePicker.getMonth()+1;
                 int day = datePicker.getDayOfMonth();
                 String weight = etWeight.getText().toString();
                 editWeightViewModel.saveWeightButtonClicked(year, month, day, weight, currentlyEditedId);
@@ -126,9 +140,10 @@ public class WeightListFragment extends Fragment {
 
             @Override
             public void OnItemClick(Weight weight) {
+                Log.d(TAG, "Weight Item on RecyclerView clicked");
                 etWeight.setText(weight.getWeight().toString());
                 int year = weight.getDate().getYear();
-                int month = weight.getDate().getMonthValue();
+                int month = weight.getDate().getMonthValue()-1;
                 int day = weight.getDate().getDayOfMonth();
                 datePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
                     @Override
@@ -166,5 +181,10 @@ public class WeightListFragment extends Fragment {
             } break;
         }
 
+    }
+
+    private void setLayoutValuesToDefault() {
+        this.etWeight.setText("");
+        this.datePicker.updateDate(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth());
     }
 }

@@ -19,6 +19,8 @@ import net.babuszka.personalweightmonitor.R;
 import net.babuszka.personalweightmonitor.common.error_handling.SaveWeightStatus;
 import net.babuszka.personalweightmonitor.utils.ViewUtils;
 
+import java.time.LocalDate;
+
 public class DashboardFragment extends Fragment {
 
     private static final String TAG = "DashboardFragment";
@@ -27,7 +29,7 @@ public class DashboardFragment extends Fragment {
     private AddWeightViewModel addWeightViewModel;
 
     private View view;
-    private FloatingActionButton btnAdd;
+    private FloatingActionButton btnAddWeight;
     private Dialog dialogWeight;
     private DatePicker datePicker;
     private EditText etWeight;
@@ -55,8 +57,7 @@ public class DashboardFragment extends Fragment {
     }
 
     public void initView() {
-        btnAdd = view.findViewById(R.id.btnAdd);
-
+        btnAddWeight = view.findViewById(R.id.btnAdd);
         dialogWeight = new Dialog(getContext());
         dialogWeight.setContentView(R.layout.dialog_weight);
         btnCancel = dialogWeight.findViewById(R.id.btnCancel);
@@ -67,10 +68,11 @@ public class DashboardFragment extends Fragment {
 
     public void setListeners() {
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        btnAddWeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "btnAdd clicked");
+                Log.d(TAG, "btnAddWeight clicked");
+                setLayoutValuesToDefault();
                 dialogWeight.show();
             }
         });
@@ -118,6 +120,11 @@ public class DashboardFragment extends Fragment {
             } break;
         }
 
+    }
+
+    private void setLayoutValuesToDefault() {
+        this.etWeight.setText("");
+        this.datePicker.updateDate(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth());
     }
 
 }
