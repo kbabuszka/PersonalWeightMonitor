@@ -108,7 +108,7 @@ public class WeightListFragment extends Fragment {
     }
 
 
-    public void initView() {
+    private void initView() {
         recyclerView = view.findViewById(R.id.recycler_view_weight);
         dialogWeight = new Dialog(getContext());
         dialogWeight.setContentView(R.layout.dialog_weight);
@@ -119,7 +119,7 @@ public class WeightListFragment extends Fragment {
         datePicker = dialogWeight.findViewById(R.id.datePicker);
     }
 
-    public void setListeners() {
+    private void setListeners() {
 
         btnAddWeight.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -57,7 +57,7 @@ public class DashboardFragment extends Fragment {
         return view;
     }
 
-    public void initView() {
+    private void initView() {
         btnAddWeight = view.findViewById(R.id.btnAdd);
         dialogWeight = new Dialog(getContext());
         dialogWeight.setContentView(R.layout.dialog_weight);
@@ -67,7 +67,7 @@ public class DashboardFragment extends Fragment {
         datePicker = dialogWeight.findViewById(R.id.datePicker);
     }
 
-    public void setListeners() {
+    private void setListeners() {
 
         btnAddWeight.setOnClickListener(new View.OnClickListener() {
             @Override
