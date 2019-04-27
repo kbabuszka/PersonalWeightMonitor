@@ -8,7 +8,7 @@
     <string name="button_cancel">Cancel</string>
     <string name="button_save_data">Save data</string>
 
-    <string name="edittext_weight_hint">Put your weight here...</string>
+    <string name="edittext_weight_hint">Put your weight here…</string>
 
     <string name="message_status_weight_success">Weight added successfuly</string>
     <string name="message_status_weight_empty">You have to provide your weight</string>
@@ -19,6 +19,21 @@
     <string name="message_status_weight_delete_failed">Weight couldn\'t be deleted</string>
 
     <string name="message_status_weight_edit_success">Weight edited successfuly</string>
+
+    <string name="textview_current_weight">Current weight</string>
+    <string name="textview_total_weight_loss">Total weight loss</string>
+    <string name="textview_total_weight_gain">Total weight gain</string>
+    <string name="textview_max_weight_loss">Max. weight loss</string>
+    <string name="textview_max_weight_gain">Max. weight gain</string>
+    <string name="textview_entries_amount">Number of entries</string>
+    <string name="textview_avg_change">Average weight change</string>
+    <string name="textview_together_since">We are together since</string>
+
+
+
+
+
+
 
 <string name="hello_blank_fragment">Hello blank fragment</string>
 

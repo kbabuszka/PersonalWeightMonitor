@@ -2,8 +2,15 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#B6087B</color>
 
     <color name="changePositive">#00FF00</color>
     <color name="changeNegative">#FF0000</color>
+
+    <color name="backgroundBox">#FCFCFC</color>
+    <color name="backgroundFragment">#E0E2E1</color>
+
+    <color name="borderBox">#A0A0A0</color>
+
+    <color name="textColorPrimary">#848484</color>
 </resources>

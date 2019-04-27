@@ -15,11 +15,14 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter;
+import com.github.mikephil.charting.utils.EntryXComparator;
 
 import net.babuszka.personalweightmonitor.R;
 import net.babuszka.personalweightmonitor.data.model.Weight;
 import net.babuszka.personalweightmonitor.ui.weightdata.WeightAdapter;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ChartFragment extends Fragment {
@@ -60,6 +63,7 @@ public class ChartFragment extends Fragment {
     }
 
     private void prepareChart(List<Entry> chartData) {
+        Collections.sort(chartData, new EntryXComparator()); // List must be sorted per MPchart documentation
         LineDataSet dataSet = new LineDataSet(chartData, "kg");
         dataSet.setColor(Color.RED);
 

@@ -10,6 +10,7 @@ import com.github.mikephil.charting.data.Entry;
 import net.babuszka.personalweightmonitor.data.WeightRepository;
 import net.babuszka.personalweightmonitor.data.model.Weight;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +32,14 @@ public class WeightChartViewModel extends AndroidViewModel {
 
     public List<Entry> getChartData(List<Weight> weightList) {
         List<Entry> entries = new ArrayList<Entry>();
+        LocalDate date;
+        Long timeStamp;
         for (Weight weightItem : weightList) {
+            date = weightItem.getDate();
+            timeStamp = date.toEpochDay();
             //entries.add(new Entry(weightItem.getWeight(), weightItem.getDate()));
-            entries.add(new Entry(Float.parseFloat("1"), weightItem.getWeight().floatValue()));
+            entries.add(new Entry(timeStamp.floatValue(), weightItem.getWeight().floatValue()));
+            //entries.add(new Entry(Float.parseFloat(String.valueOf(weightItem.getId())), weightItem.getWeight().floatValue()));
         }
         return entries;
     }
