@@ -14,13 +14,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import net.babuszka.personalweightmonitor.R;
 import net.babuszka.personalweightmonitor.common.error_handling.SaveWeightStatus;
+import net.babuszka.personalweightmonitor.data.model.Weight;
 import net.babuszka.personalweightmonitor.utils.MessageTypes;
 import net.babuszka.personalweightmonitor.utils.ViewUtils;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class DashboardFragment extends Fragment {
 
@@ -36,6 +39,15 @@ public class DashboardFragment extends Fragment {
     private EditText etWeight;
     private Button btnSaveData;
     private Button btnCancel;
+    private TextView tvCurrentWeight;
+    private TextView tvTotalWeightLoss;
+    private TextView tvTotalWeightGain;
+    private TextView tvMaxWeightLoss;
+    private TextView tvMaxWeightGain;
+    private TextView tvEntriesAmount;
+    private TextView tvAverageWeightChange;
+    private TextView tvTogetherSince;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +59,62 @@ public class DashboardFragment extends Fragment {
         datePicker.setMaxDate(System.currentTimeMillis());
         dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel.class);
 
+        dashboardViewModel.getCurrentWeight().observe(this, new Observer<Double>() {
+            @Override
+            public void onChanged(@Nullable Double currentWeight) {
+                tvCurrentWeight.setText(String.format("%.1f", currentWeight));
+            }
+        });
+
+        dashboardViewModel.getTotalWeightLoss().observe(this, new Observer<Double>() {
+            @Override
+            public void onChanged(@Nullable Double totalWeightLoss) {
+                tvTotalWeightLoss.setText(String.format("%.1f", totalWeightLoss));
+            }
+        });
+
+        dashboardViewModel.getTotalWeightGain().observe(this, new Observer<Double>() {
+            @Override
+            public void onChanged(@Nullable Double totalWeightGain) {
+                tvTotalWeightGain.setText(String.format("%.1f", totalWeightGain));
+            }
+        });
+
+        dashboardViewModel.getMaxWeightLoss().observe(this, new Observer<Double>() {
+            @Override
+            public void onChanged(@Nullable Double maxWeightLoss) {
+                tvMaxWeightLoss.setText(String.format("%.1f", maxWeightLoss));
+            }
+        });
+
+        dashboardViewModel.getMaxWeightGain().observe(this, new Observer<Double>() {
+            @Override
+            public void onChanged(@Nullable Double maxWeightGain) {
+                tvMaxWeightGain.setText(String.format("%.1f", maxWeightGain));
+            }
+        });
+
+        dashboardViewModel.getEntriesAmount().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer entriesAmount) {
+                tvEntriesAmount.setText(entriesAmount.toString());
+            }
+        });
+
+        dashboardViewModel.getAvgWeightChange().observe(this, new Observer<Double>() {
+            @Override
+            public void onChanged(@Nullable Double avgWeightChange) {
+                tvAverageWeightChange.setText(String.format("%.1f", avgWeightChange));
+            }
+        });
+
+        dashboardViewModel.getFirstEntryDate().observe(this, new Observer<LocalDate>() {
+            @Override
+            public void onChanged(@Nullable LocalDate firstEntryDate) {
+                tvTogetherSince.setText(firstEntryDate.toString());
+            }
+        });
+
         addWeightViewModel = ViewModelProviders.of(this).get(AddWeightViewModel.class);
         addWeightViewModel.getStatus().observe(this, new Observer<SaveWeightStatus>() {
             @Override
@@ -54,6 +122,7 @@ public class DashboardFragment extends Fragment {
                 handleStatus(status);
             }
         });
+
         return view;
     }
 
@@ -65,6 +134,14 @@ public class DashboardFragment extends Fragment {
         btnSaveData = dialogWeight.findViewById(R.id.btnSaveData);
         etWeight = dialogWeight.findViewById(R.id.etWeight);
         datePicker = dialogWeight.findViewById(R.id.datePicker);
+        tvCurrentWeight = view.findViewById(R.id.text_current_weight);
+        tvTotalWeightLoss = view.findViewById(R.id.text_total_weight_loss);
+        tvTotalWeightGain = view.findViewById(R.id.text_total_weight_gain);
+        tvMaxWeightLoss = view.findViewById(R.id.text_max_weight_loss);
+        tvMaxWeightGain = view.findViewById(R.id.text_max_weight_gain);
+        tvEntriesAmount = view.findViewById(R.id.text_number_of_entries);
+        tvAverageWeightChange = view.findViewById(R.id.text_avg_change);
+        tvTogetherSince = view.findViewById(R.id.text_together_since);
     }
 
     private void setListeners() {

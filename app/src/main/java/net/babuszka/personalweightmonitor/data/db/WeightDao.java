@@ -24,4 +24,8 @@ public interface WeightDao {
 
     @Query("SELECT * FROM weight_table ORDER BY date DESC")
     LiveData<List<Weight>> getAllWeight();
+
+    @Query("SELECT * FROM weight_table ORDER BY date DESC")
+    List<Weight> getAllWeightAsync();
+
 }

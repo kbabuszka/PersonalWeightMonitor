@@ -9,12 +9,14 @@ import net.babuszka.personalweightmonitor.data.db.WeightDatabase;
 import net.babuszka.personalweightmonitor.data.model.Weight;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 public class WeightRepository {
 
     private WeightDao weightDao;
     private LiveData<List<Weight>> allWeight;
+    private List<Weight> allWeightAsync;
 
     public WeightRepository(Application application) {
         WeightDatabase database = WeightDatabase.getInstance(application);
@@ -38,8 +40,22 @@ public class WeightRepository {
         return allWeight;
     }
 
+    public List<Weight> getAllWeightAsync() throws ExecutionException, InterruptedException {
+        return new GetWeightAsyncTask(weightDao).execute().get();
+    }
 
+    private static class GetWeightAsyncTask extends AsyncTask<Void, Void, List<Weight>> {
 
+        private WeightDao weightDao;
+        private GetWeightAsyncTask(WeightDao weightDao) {
+            this.weightDao = weightDao;
+        }
+
+        @Override
+        protected List<Weight> doInBackground(Void... voids) {
+            return weightDao.getAllWeightAsync();
+        }
+    }
 
     private static class InsertWeightAsyncTask extends AsyncTask<Weight, Void, Void> {
 
