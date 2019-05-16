@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!--
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#B6087B</color>
+-->
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#EF5350</color>
 
     <color name="changePositive">#00FF00</color>
     <color name="changeNegative">#FF0000</color>
@@ -13,4 +18,5 @@
     <color name="borderBox">#A0A0A0</color>
 
     <color name="textColorPrimary">#848484</color>
+    <color name="textColorPrimaryDark">#2E2E2E</color>
 </resources>
