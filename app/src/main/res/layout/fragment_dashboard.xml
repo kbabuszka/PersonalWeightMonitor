@@ -32,22 +32,28 @@
             android:layout_marginTop="10dp"
             app:cardCornerRadius="2dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="5dp">
 
-            <TextView
-                android:id="@+id/text_current_weight_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_label"
-                android:text="@string/textview_current_weight" />
+                <TextView
+                    android:id="@+id/text_current_weight_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/textview_current_weight"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_label" />
 
-            <TextView
-                android:id="@+id/text_current_weight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_value"
-                android:text="@string/textview_no_data_available" />
+                <TextView
+                    android:id="@+id/text_current_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/textview_no_data_available"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_value" />
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
 
@@ -65,22 +71,28 @@
             android:layout_marginTop="10dp"
             app:cardCornerRadius="2dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="5dp">
 
-            <TextView
-                android:id="@+id/text_total_weight_loss_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_label"
-                android:text="@string/textview_total_weight_loss" />
+                <TextView
+                    android:id="@+id/text_total_weight_loss_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_label"
+                    android:text="@string/textview_total_weight_loss" />
 
-            <TextView
-                android:id="@+id/text_total_weight_loss"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_value"
-                android:text="@string/textview_no_data_available" />
+                <TextView
+                    android:id="@+id/text_total_weight_loss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_value"
+                    android:text="@string/textview_no_data_available" />
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <!-- ROW 2  -->
@@ -96,22 +108,28 @@
             android:layout_marginTop="10dp"
             app:cardCornerRadius="2dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="5dp">
 
-            <TextView
-                android:id="@+id/text_total_weight_gain_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_label"
-                android:text="@string/textview_total_weight_gain" />
+                <TextView
+                    android:id="@+id/text_total_weight_gain_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_label"
+                    android:text="@string/textview_total_weight_gain" />
 
-            <TextView
-                android:id="@+id/text_total_weight_gain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_value"
-                android:text="@string/textview_no_data_available" />
+                <TextView
+                    android:id="@+id/text_total_weight_gain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_value"
+                    android:text="@string/textview_no_data_available" />
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
 
@@ -129,22 +147,28 @@
             android:layout_marginTop="10dp"
             app:cardCornerRadius="2dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="5dp">
 
-            <TextView
-                android:id="@+id/text_max_weight_loss_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_label"
-                android:text="@string/textview_max_weight_loss" />
+                <TextView
+                    android:id="@+id/text_max_weight_loss_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_label"
+                    android:text="@string/textview_max_weight_loss" />
 
-            <TextView
-                android:id="@+id/text_max_weight_loss"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_value"
-                android:text="@string/textview_no_data_available" />
+                <TextView
+                    android:id="@+id/text_max_weight_loss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_value"
+                    android:text="@string/textview_no_data_available" />
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <!-- ROW 3  -->
@@ -160,22 +184,28 @@
             android:layout_marginTop="10dp"
             app:cardCornerRadius="2dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="5dp">
 
-            <TextView
-                android:id="@+id/text_max_weight_gain_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_label"
-                android:text="@string/textview_max_weight_gain" />
+                <TextView
+                    android:id="@+id/text_max_weight_gain_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_label"
+                    android:text="@string/textview_max_weight_gain" />
 
-            <TextView
-                android:id="@+id/text_max_weight_gain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_value"
-                android:text="@string/textview_no_data_available" />
+                <TextView
+                    android:id="@+id/text_max_weight_gain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_value"
+                    android:text="@string/textview_no_data_available" />
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
 
@@ -192,22 +222,28 @@
             android:layout_marginTop="10dp"
             app:cardCornerRadius="2dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="5dp">
 
-            <TextView
-                android:id="@+id/text_number_of_entries_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_label"
-                android:text="@string/textview_entries_amount" />
+                <TextView
+                    android:id="@+id/text_number_of_entries_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_label"
+                    android:text="@string/textview_entries_amount" />
 
-            <TextView
-                android:id="@+id/text_number_of_entries"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_value"
-                android:text="@string/textview_no_data_available" />
+                <TextView
+                    android:id="@+id/text_number_of_entries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_value"
+                    android:text="@string/textview_no_data_available" />
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <!-- ROW 4  -->
@@ -223,22 +259,28 @@
             android:layout_marginTop="10dp"
             app:cardCornerRadius="2dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="5dp">
 
-            <TextView
-                android:id="@+id/text_avg_change_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_label"
-                android:text="@string/textview_avg_change" />
+                <TextView
+                    android:id="@+id/text_avg_change_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_label"
+                    android:text="@string/textview_avg_change" />
 
-            <TextView
-                android:id="@+id/text_avg_change"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_value"
-                android:text="@string/textview_no_data_available" />
+                <TextView
+                    android:id="@+id/text_avg_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_value"
+                    android:text="@string/textview_no_data_available" />
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <!-- ROW 5  -->
@@ -254,22 +296,28 @@
             android:layout_marginTop="10dp"
             app:cardCornerRadius="2dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="5dp">
 
-            <TextView
-                android:id="@+id/text_together_since_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_label"
-                android:text="@string/textview_together_since" />
+                <TextView
+                    android:id="@+id/text_together_since_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_label"
+                    android:text="@string/textview_together_since" />
 
-            <TextView
-                android:id="@+id/text_together_since"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="@dimen/dashboard_value"
-                android:text="@string/textview_no_data_available" />
+                <TextView
+                    android:id="@+id/text_together_since"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/dashboard_value"
+                    android:text="@string/textview_no_data_available" />
+            </LinearLayout>
         </android.support.v7.widget.CardView>
     </GridLayout>
 
